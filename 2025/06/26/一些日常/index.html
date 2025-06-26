@@ -1,0 +1,299 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title> | chiyuki の小窝</title>
+    <meta name="author" content="chiyuki" />
+    <meta name="description" content="朋友圈人太多，搭了个博客偷偷记录." />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/1.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 7.2.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>CHIYUKI の小窝</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;CHIYUKI の小窝</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1></h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2025/6/26
+        </span>
+        
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p>这学期来真的是忙的不行了，本来是想考研，中途有改变注意开始准备留学，计划还是赶不上变化，本来说是每周写一点，不要错过了一些宝贵的记忆，还是没抽到空，只能在考完试的这段时间开始写起，时间过去有些久了，可能记不清楚，不过事后再一起看也不失为一种乐趣。</p>
+<p><img src="/attachment/685d5c2458cb8da5c87418e9.jpg"></p>
+<p>笨蛋姐姐，无限火力竟能输一晚上。</p>
+<p><img src="https://pic1.imgdb.cn/item/685d5c9d58cb8da5c8741941.jpg"></p>
+<p>寒假一起看了坠子，四川的天很冷，被子里跟你一起爆笑是一段难得的舒适时光，在家每天晚上电话打到一点多钟，很爽了。</p>
+<p><img src="https://pic1.imgdb.cn/item/685d5d2b58cb8da5c874197c.jpg"></p>
+<p>抖音的火花标识，到现在我还是没有换，当时确实没有想好该换什么，其实我先选姐妹，但内心好想并不满足，我们到底是什么关系呢？</p>
+<p><img src="https://pic1.imgdb.cn/item/685d5dcc58cb8da5c87419c9.jpg"></p>
+<p>唉，看到这里又想起伤心事，真是好可惜啊牛，你真是一个很爱小动物的人。</p>
+<p><img src="/attachment/685d5e2c58cb8da5c87419fe.jpg"></p>
+<p>沉迷野生荔枝猫的小姐姐一枚呀，自设确实美的没边了哈。喷不了‘</p>
+<p><img src="/attachment/685d5e9258cb8da5c8741a22.jpg"></p>
+<p>没有猫和dadadan的联动，可恶没有去成，猫猫可爱捏，momo也可爱捏。</p>
+<p><img src="https://pic1.imgdb.cn/item/685d5eec58cb8da5c8741a39.jpg"></p>
+<p>cos了师尊，我直接就是一个跪服，静流给我一巴掌再踩我几脚。</p>
+<p><img src="https://pic1.imgdb.cn/item/685d5f3558cb8da5c8741a67.jpg"></p>
+<p>妹妹就是不让人省心，可恶我没有亲妹妹，但是这种也让我好羡慕，这种烦恼我想有都不会有了。妹妹朋友圈确实是搞入笑哈。</p>
+<p><img src="https://pic1.imgdb.cn/item/685d5fb158cb8da5c8741ac2.jpg"></p>
+<p>唉，女童总比黄毛强，唉，初中生，还是太会玩了。</p>
+<p><img src="https://pic1.imgdb.cn/item/685d5fef58cb8da5c8741ad9.jpg"></p>
+<p>妈妈是真可怜也是真强人啊，开了自己的店，妹妹你帮着管管吧，爸妈的话估计是不会听了这个年纪。</p>
+<p><img src="/attachment/685d606c58cb8da5c8741b22.jpg"></p>
+<p>重庆去玩了喵，真是雾都，我妈也是说走就走，中午从四川自驾重庆</p>
+<p><img src="https://pic1.imgdb.cn/item/685d60b958cb8da5c8741b47.jpg"></p>
+<p>吃到了重庆正宗火锅喵，第一口依旧姐姐先吃捏，不婚主义吗，有点意思，我跟爸妈完全不会交流这些东西，船到桥头自然直，姐姐也别太在意爸妈看法了。</p>
+<p><img src="https://pic1.imgdb.cn/item/685d616f58cb8da5c8741bbd.jpg"></p>
+<p>野史这一块.&#x2F;</p>
+<p><img src="https://pic1.imgdb.cn/item/685d618e58cb8da5c8741bc4.jpg"></p>
+<p>还是簧片看少了，我的二创怎么全是簧片？</p>
+<p><img src="https://pic1.imgdb.cn/item/685d61ce58cb8da5c8741bcb.jpg"></p>
+<p><img src="https://pic1.imgdb.cn/item/685d62dc58cb8da5c8741c32.jpg"></p>
+<p>唉，姐姐还是没什么警惕啊，这种还是不要轻易接受为好哦。请你去打助攻也是有点意思，和外向美女贴贴是好，但也要多留心眼啊。</p>
+<p><img src="https://pic1.imgdb.cn/item/685d628858cb8da5c8741c1d.jpg"></p>
+<p>聚会吃瓜也太爽了吧，我趣。</p>
+<p><img src="https://pic1.imgdb.cn/item/685d62aa58cb8da5c8741c23.jpg"></p>
+<p>标题党yy，吸引人有一套的。</p>
+<p><img src="https://pic1.imgdb.cn/item/685d632658cb8da5c8741c47.jpg"></p>
+<p>回如家的一集，真的挺反感胖的人，对不起但是我也有刻板印象。不是对别人有多高的要求，但是我觉得除开真的有少部分人是基因问题之外，我觉得还是个人的管理有问题。</p>
+<p><img src="https://pic1.imgdb.cn/item/685d63d358cb8da5c8741c65.jpg"></p>
+<p>别管了，共鸣。。。</p>
+<p><img src="https://pic1.imgdb.cn/item/685d63fa58cb8da5c8741c6b.jpg"></p>
+<p>落地依旧找宠物的yy，也是找到同类了，爱鼠tv。</p>
+<p><img src="https://pic1.imgdb.cn/item/685d644b58cb8da5c8741c7d.jpg"></p>
+<p><img src="https://pic1.imgdb.cn/item/685d64be58cb8da5c8741c9a.jpg"></p>
+<p><img src="https://pic1.imgdb.cn/item/685d64e358cb8da5c8741c9e.jpg"></p>
+<p>OK啊，偷听妹妹与女朋友劲爆聊天哈，md我真得觉得好有意思，你真该给我打个电话的，受不了了。绷不住，看聊天记录也是搞入校。亲姐直接降入咖哈吗，笑死我了</p>
+<p><img src="https://pic1.imgdb.cn/item/685d653d58cb8da5c8741cab.jpg"></p>
+<p><img src="https://pic1.imgdb.cn/item/685d65a358cb8da5c8741cc0.jpg"></p>
+<p>对不起喵，我也是足控喵，不对应该说是腿控喵，看人先看腿我的看人准则，放心我不会甜椒的姐姐。我只是喜欢有良好形状以及粗细的腿捏。勒肉赛高好吧。</p>
+<p><img src="https://pic1.imgdb.cn/item/685d65dd58cb8da5c8741cd1.jpg"></p>
+<p>妹妹也是紧跟热点哈，笑死我了。</p>
+<p><img src="https://pic1.imgdb.cn/item/685d660258cb8da5c8741cd6.jpg"></p>
+<p>有花茶是吧，我直接就是白嫖，最喜欢和花茶喵，虽然现在还没喝完，还是太懒了。</p>
+<p><img src="https://pic1.imgdb.cn/item/685d664158cb8da5c8741cea.jpg"></p>
+<p>谢谢姐姐的生日礼物，我是不会放弃养只狐狐的，好久没看过了，我等会上去看看我的狐咋样了。</p>
+<p><img src="https://pic1.imgdb.cn/item/685d669358cb8da5c8741d0c.jpg"></p>
+<p>还给我做了生日蛋糕的画，真是太用心了，喜欢喵。</p>
+<p><img src="https://pic1.imgdb.cn/item/685d66d458cb8da5c8741d26.jpg"></p>
+<p>捣鼓的表情修改项目，有点意思，虽然还是呆了吧唧的。</p>
+<p><img src="https://pic1.imgdb.cn/item/685d671658cb8da5c8741d34.jpg"></p>
+<p>真的好有意思，笑死我了，好想养一个玩，为什么我没有妹妹（悔如恨</p>
+<p><img src="https://pic1.imgdb.cn/item/685d677558cb8da5c8741d56.jpg"></p>
+<p>刚开学又约着出来玩了，唉，别管了，爽了，虽然好像电影不算太过惊艳。</p>
+<p><img src="https://pic1.imgdb.cn/item/685d67bc58cb8da5c8741d67.jpg"></p>
+<p>唉计划是要学高数的，结果不考研了，不好意思喵，my fault</p>
+<p><img src="https://pic1.imgdb.cn/item/685d67e758cb8da5c8741d69.jpg"></p>
+<p>神人眼镜自毁了喵，真是无敌了，20块，果然还是不能期待喵。</p>
+<p><img src="https://pic1.imgdb.cn/item/685d681658cb8da5c8741d7d.jpg"></p>
+<p>真是送了好多东西，还给我了齐神小零食，很喜欢喵，很好吃。谢谢姐姐，我真想亲你了</p>
+<p><img src="https://pic1.imgdb.cn/item/685d686658cb8da5c8741da7.jpg"></p>
+<p>无敌了孩子，结果还不是被我逮到，桀桀桀</p>
+<p><img src="https://pic1.imgdb.cn/item/685d689358cb8da5c8741dba.jpg"></p>
+<p>东离剑游记喵，真是很喜欢啊看得出来，完了我已经忘记名字了。</p>
+<p><img src="https://pic1.imgdb.cn/item/685d68d158cb8da5c8741dc8.jpg"></p>
+<p>ok啊，你邀我一下，我邀你一下，爽了，赏花启动。</p>
+<p><img src="https://pic1.imgdb.cn/item/685d691958cb8da5c8741ddd.jpg"></p>
+<p>可惜了差一点点，我将拉着你背单词争取给他过了，本来说前一周带着你做做题的，结果你一堆考试我都蒙了。</p>
+<p><img src="https://pic1.imgdb.cn/item/685d695958cb8da5c8741deb.jpg"></p>
+<p>唉，星核精。</p>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2025 chiyuki の小窝
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;chiyuki
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>
